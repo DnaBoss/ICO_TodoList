@@ -9,12 +9,13 @@ class InputField extends React.Component {
     handleKeyDown(e) {
         const { onSubmitEditing } = this.props;
         const { value } = e.target;
+        // console.log(e)
     }
     render() {
         const {
             placeholder
         } = this.props
-        return <input {...this.props }
+        return <input {...this.props } onKeyDown={ this.handleKeyDown }
         type = "text" / > ;
     }
 }

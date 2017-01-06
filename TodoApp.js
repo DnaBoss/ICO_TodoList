@@ -9,6 +9,11 @@ const _deleteTodo = (todos, id) => {
   if (idx !== -1) todos.splice(idx, 1);
   return todos;
 };
+const _toggleTodo = (todos, id, completed) => {
+    const target = todos.find(todo => todo.id === id)
+    if (target) target.completed = completed;
+    return todos
+}
 
 class TodoApp extends React.Component {
   constructor(props, context) {
@@ -42,19 +47,16 @@ class TodoApp extends React.Component {
          <TodoHeader 
          title='My Todo List'
          userName='ICO'
-         todoCount={todos.filter(todo=>!todo.completed).length}
-         
+         todoCount={todos.filter(todo=>!todo.completed).length}         
         />
-
         <InputField 
           placeholder='新增待辦事項'
         />
-        <TodoList todos={todos}
-            onDeleteTodo={
-            (...args) => this.setState({
-              todos: _deleteTodo(todos, ...args)
-            })
-          }
+        <TodoList 
+            todos={todos}
+            onDeleteTodo={(id) => this.setState({todos: _deleteTodo(todos,id)})}
+             onToggleTodo={(id,completed)=>this.setState({todos: _toggleTodo(todos,id,completed)})
+           }
         />
       </div>
     );
