@@ -7,14 +7,24 @@ class InputField extends React.Component {
         //如此 handleKeyDown 的執行環境才會變成 class InputField
     }
     handleKeyDown(e) {
-        const { onSubmitEditing } = this.props;
+        const { onSubmitEditing, onKeyDown } = this.props;
         const { value } = e.target;
+        switch (e.keyCode) {
+            case 13:
+                if (value.trim())
+                    onSubmitEditing && onSubmitEditing(value);
+                e.target.value = '';
+                break;
+        }
+        onKeyDown && onKeyDown(e);
     }
+
     render() {
         const {
             placeholder
         } = this.props
         return <input {...this.props }
+        onKeyDown = { this.handleKeyDown }
         type = "text" / > ;
     }
 }
