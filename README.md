@@ -1,2 +1,3 @@
-# ICO_TodoList
-練習使用React 建立 TodoList
+#README
+
+練習使用react 完成一個 TODO LIST
