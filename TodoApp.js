@@ -22,6 +22,11 @@ const _createTodo = (todos, title) => {
     })
     return todos
 }
+const _updateTodo = (todos, id, title) => {
+  const target = todos.find((todo) => todo.id === id);
+  if (target) target.title = title;
+  return todos;
+};
 
 class TodoApp extends React.Component {
     constructor(props, context) {
@@ -55,12 +60,9 @@ class TodoApp extends React.Component {
         }
         placeholder = '新增待辦事項' / >
             < TodoList todos = { todos }
-        onDeleteTodo = {
-            (id) => this.setState({ todos: _deleteTodo(todos, id) })
-        }
-        onToggleTodo = {
-            (id, completed) => this.setState({ todos: _toggleTodo(todos, id, completed) })
-        }
+        onDeleteTodo = {(id) => this.setState({ todos: _deleteTodo(todos, id) })}
+        onToggleTodo = {(id, completed) => this.setState({ todos: _toggleTodo(todos, id, completed) })}
+        onUpdateTodo={(id,title)=>this.setState({ todos: _updateTodo(todos, id, title) })}
         /> < /div >
     );
 }
