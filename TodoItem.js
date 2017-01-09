@@ -32,7 +32,7 @@ class TodoItem extends React.Component {
   }
 
   renderEditMode() {
-    const { title } = this.props;
+    const { title,onUpdate } = this.props;
     return (
       <InputField
         autoFocus
@@ -45,6 +45,11 @@ class TodoItem extends React.Component {
             this.toggleEditMode();
           }
         }}
+        onSubmitEditing={(content) => {
+        onUpdate && onUpdate(content);
+        this.toggleEditMode();
+      }}
+
       />
     );
   }
@@ -60,6 +65,7 @@ TodoItem.propTypes = {
   title: React.PropTypes.string.isRequired,
   completed: React.PropTypes.bool.isRequired,
   onDelete: React.PropTypes.func,
+  onUpdate: React.PropTypes.func,
   onToggle:React.PropTypes.func
 };
 
