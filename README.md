@@ -1,6 +1,7 @@
 # ICO_TodoList
 練習使用React 建立 TodoList
 在終端機輸入以下四列指令
+(需先安裝 node.js 及 git)
 
 git clone git@github.com:DnaBoss/ICO_TodoList.git
 
